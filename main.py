@@ -2,13 +2,13 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from ML.model import model_load
+import uvicorn
 
 model = None
 app = FastAPI()
 
 
 class SentimentResponse(BaseModel):
-    text: str
     sentiment_label: str
 
 
@@ -31,7 +31,6 @@ def predict_sentiment(text: str):
     sentiment = model(text)
 
     response = SentimentResponse(
-        text=text,
         sentiment_label=sentiment.label,
     )
     return response
