@@ -26,7 +26,7 @@ def startup_event():
 
 
 # Получаем результат
-@app.get("/get_results")
+@app.post("/get_results")
 def predict_sentiment(text: str):
     sentiment = model(text)
 
