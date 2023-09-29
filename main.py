@@ -8,6 +8,10 @@ model = None
 app = FastAPI()
 
 
+class SentimentRequest(BaseModel):
+    text: str
+
+
 class SentimentResponse(BaseModel):
     sentiment_label: str
 
@@ -27,11 +31,12 @@ def startup_event():
 
 # Получаем результат
 @app.post("/get_results")
-def predict_sentiment(text: str):
-    sentiment = model(text)
+def predict_sentiment(request: SentimentRequest):
+    sentiment = model(request.text)
 
     response = SentimentResponse(
         sentiment_label=sentiment.label,
     )
+
     return response
 
