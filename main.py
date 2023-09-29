@@ -15,7 +15,7 @@ class SentimentResponse(BaseModel):
 # create a route
 @app.get("/")
 def root():
-    return {"текст": "Анализ сантиментов"}
+    return 'Привет. Проверить можно к локальному серверу добавить /docs'
 
 
 # Делаем чтобы функция запускалась при запуске приложения
